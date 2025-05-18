@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Networks - 1942 RP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600&display=swap');
+
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        overflow-x: hidden;
+      }
+
+      .title-text {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .neon-text {
+        color: #fff;
+        text-shadow:
+          0 0 5px #fff,
+          0 0 10px #fff,
+          0 0 20px #0ff,
+          0 0 40px #0ff,
+          0 0 80px #0ff;
+      }
+
+      .logo-neon {
+        filter: drop-shadow(0 0 5px #fff)
+                drop-shadow(0 0 10px #0ff)
+                drop-shadow(0 0 15px #0ff);
+      }
+
+      .rulebook-glow {
+        box-shadow:
+          0 0 10px rgba(255, 255, 255, 0.15),
+          0 0 20px rgba(0, 255, 255, 0.3),
+          0 0 30px rgba(0, 255, 255, 0.2);
+      }
+
+      .rule-button {
+        background-color: #fff;
+        color: #000;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px #fff, 0 0 20px #0ff;
+      }
+
+      .rule-button:hover {
+        background-color: #ddd;
+      }
+
+      .loading-container {
+        width: 100%;
+        height: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 20px;
+      }
+
+      .loading-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #0ff 0%, #cccccc 100%);
+        width: 0%;
+        transition: width 0.3s ease;
+        box-shadow:
+          0 0 5px #0ff,
+          0 0 10px #0ff,
+          0 0 20px #0ff;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loadingBar = document.getElementById('loadingBar');
+        const loadingPercent = document.getElementById('loadingPercent');
+        let progress = 0;
+
+        const loadingInterval = setInterval(() => {
+          progress += Math.random() * 5;
+          if (progress >= 100) {
+            progress = 100;
+            clearInterval(loadingInterval);
+          }
+          loadingBar.style.width = `${progress}%`;
+          loadingPercent.textContent = `${Math.floor(progress)}%`;
+        }, 100);
+      });
+    </script>
+  </head>
+  <body class="flex flex-col items-center justify-between min-h-screen p-6">
+
+    <!-- Logo and Title -->
+    <div class="flex flex-col items-center mt-8">
+      <img
+        src="https://i.ibb.co/jP6wzSKD/Black-And-White-Globe-Y2k-Streetwear-Logo-1.png"
+        alt="Global Networks Logo"
+        class="w-32 h-32 mb-4 border-4 border-white rounded-full shadow-xl logo-neon"
+      />
+      <h1 class="title-text text-5xl sm:text-6xl neon-text">Global Networks</h1>
+      <p class="text-sm tracking-widest uppercase mt-1 neon-text">1942 Roleplay</p>
+    </div>
+
+    <!-- Rulebook Section -->
+    <div class="bg-neutral-900 p-6 rounded-xl border border-gray-700 mt-10 max-w-xl w-full text-center shadow-lg rulebook-glow">
+      <h3 class="title-text text-xl mb-3 neon-text">📜 Server Rulebook</h3>
+      <p class="text-gray-400 mb-4">
+        Please read the rules before joining. Respect the server and other players.
+      </p>
+      <a
+        href="https://docs.google.com/document/d/19ge-T_zvLfqCSf0iofoxjCA9ziLN6prLrX8qUVfPIvA/edit?tab=t.0"
+        target="_blank"
+        class="rule-button"
+      >
+        View Full Rules
+      </a>
+
+      <!-- Loading Bar -->
+      <div class="mt-6">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm text-gray-400">Loading game resources...</span>
+          <span id="loadingPercent" class="text-sm text-white font-medium">0%</span>
+        </div>
+        <div class="loading-container">
+          <div id="loadingBar" class="loading-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Info -->
+    <footer class="mt-10 text-center text-gray-500 text-sm">
+      <p class="mt-1">© 2025 Global Networks — All rights reserved.</p>
+    </footer>
+  </body>
+</html>
