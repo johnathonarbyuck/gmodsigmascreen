@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ares Networks - 1942 RP</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600&display=swap');
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ascension Networks - 1942 RP</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600&display=swap');
 
 body {
   background-color: #000;
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
+  position: relative;
 }
 
 .title-text {
@@ -22,125 +22,216 @@ body {
   text-transform: uppercase;
 }
 
-.neon-text {
+.neon-text-white {
   color: #fff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 20px #f00,
-    0 0 40px #f00,
-    0 0 80px #f00;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+}
+
+.neon-pulse {
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff; }
+  50% { text-shadow: 0 0 15px #fff, 0 0 25px #fff, 0 0 35px #fff, 0 0 60px #fff; }
+  100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff; }
+}
+
+.neon-text-red {
+  color: #ff0000;
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000;
+  animation: neonFlicker 2s infinite;
+}
+
+@keyframes neonFlicker {
+  0%,19%,21%,23%,25%,54%,56%,100% { opacity:1; text-shadow:0 0 5px #ff0000,0 0 10px #ff0000,0 0 20px #ff0000,0 0 40px #ff0000; }
+  20%,22%,24%,55% { opacity:0.4; text-shadow:none; }
+  10%,30%,50%,70%,90% { opacity:0.7; text-shadow:0 0 3px #ff4d4d,0 0 7px #ff4d4d,0 0 15px #ff1a1a; }
 }
 
 .logo-neon {
-  filter: drop-shadow(0 0 5px #fff)
-          drop-shadow(0 0 10px #f00)
-          drop-shadow(0 0 15px #f00);
+  filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #fff) drop-shadow(0 0 30px #fff);
+  animation: logoGlow 2s infinite alternate;
 }
 
-.rulebook-glow {
-  box-shadow:
-    0 0 10px rgba(255, 255, 255, 0.15),
-    0 0 20px rgba(255, 0, 0, 0.3),
-    0 0 30px rgba(255, 0, 0, 0.2);
+@keyframes logoGlow {
+  0% { filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 10px #fff) drop-shadow(0 0 15px #fff); }
+  50% { filter: drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px #fff) drop-shadow(0 0 35px #fff); }
+  100% { filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 10px #fff) drop-shadow(0 0 15px #fff); }
 }
 
-.rule-button {
-  background-color: #fff;
-  color: #000;
+.info-box {
+  background-color: rgba(0,0,0,0.7);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255,0,0,0.3);
+  color: #ff4d4d;
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px #fff, 0 0 20px #f00;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-      .rule-button:hover {
-        background-color: #ddd;
-      }
+.info-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px #ff0000, 0 0 50px #ff6666;
+}
 
-      .loading-container {
-        width: 100%;
-        height: 8px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        overflow: hidden;
-        margin-top: 20px;
-      }
+.loading-container {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 15px;
+}
 
-      .loading-bar {
-        height: 100%;
-        background: linear-gradient(90deg, #0ff 0%, #cccccc 100%);
-        width: 0%;
-        transition: width 0.3s ease;
-        box-shadow:
-          0 0 5px #0ff,
-          0 0 10px #0ff,
-          0 0 20px #0ff;
-      }
-    </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const loadingBar = document.getElementById('loadingBar');
-        const loadingPercent = document.getElementById('loadingPercent');
-        let progress = 0;
+.loading-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #fff 0%, #ccc 100%);
+  width: 0%;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+}
 
-        const loadingInterval = setInterval(() => {
-          progress += Math.random() * 5;
-          if (progress >= 100) {
-            progress = 100;
-            clearInterval(loadingInterval);
-          }
-          loadingBar.style.width = `${progress}%`;
-          loadingPercent.textContent = `${Math.floor(progress)}%`;
-        }, 100);
-      });
-    </script>
-  </head>
-  <body class="flex flex-col items-center justify-between min-h-screen p-6">
+.fade-in { opacity: 0; animation: fadeIn 0.8s forwards; }
+.fade-delay-1 { animation-delay: 0.2s; }
+.fade-delay-2 { animation-delay: 0.4s; }
+.fade-delay-3 { animation-delay: 0.6s; }
+.fade-delay-4 { animation-delay: 0.8s; }
 
-    <!-- Logo and Title -->
-    <div class="flex flex-col items-center mt-8">
-      <img
-        src="https://i.ibb.co/6JF2kjLL/ares-ss.png"
-        alt="Ares Networks Logo"
-        class="w-32 h-32 mb-4 border-4 border-white rounded-full shadow-xl logo-neon"
-      />
-      <h1 class="title-text text-5xl sm:text-6xl neon-text">Ares Networks</h1>
-      <p class="text-sm tracking-widest uppercase mt-1 neon-text">1942 Roleplay</p>
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Game Tips Ticker */
+.game-tips-ticker {
+  opacity: 0;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  white-space: nowrap;
+  animation: glowFade 3s infinite;
+}
+
+@keyframes glowFade {
+  0%,100% { text-shadow:0 0 5px #fff,0 0 10px #fff,0 0 20px #fff; opacity: 0; }
+  10%, 90% { opacity: 1; text-shadow:0 0 10px #fff,0 0 20px #fff,0 0 30px #fff; }
+}
+
+/* Particles background */
+.particle {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) translateX(0); opacity:0; }
+  50% { opacity:1; }
+  100% { transform: translateY(-10vh) translateX(100px); opacity:0; }
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Loading Bar
+  const loadingBar = document.getElementById('loadingBar');
+  const loadingPercent = document.getElementById('loadingPercent');
+  let progress = 0;
+  const loadingInterval = setInterval(() => {
+    progress += Math.random() * 5;
+    if(progress>=100){ progress=100; clearInterval(loadingInterval); }
+    loadingBar.style.width = `${progress}%`;
+    loadingPercent.textContent = `${Math.floor(progress)}%`;
+  }, 100);
+
+  // Game Tips Ticker
+  const tips = [
+    "Don't break Fear RP.",
+    "Avoid Metagaming at all times.",
+    "Stay in character and respect situations.",
+    "Respect other players and admins.",
+    "No random deathmatching.",
+    "Follow all server rules.",
+    "Use /me for roleplay actions.",
+    "Keep chat clean and immersive.",
+    "Do not exploit bugs or glitches.",
+    "Roleplay realistically for immersion.",
+    "Communicate clearly in-character.",
+    "Observe proper etiquette for events."
+  ];
+
+  const ticker = document.querySelector('.game-tips-ticker');
+  let tipIndex = 0;
+
+  function showNextTip(){
+    ticker.style.opacity = 0;
+    setTimeout(()=>{
+      ticker.textContent = tips[tipIndex];
+      ticker.style.opacity = 1;
+      tipIndex=(tipIndex+1)%tips.length;
+    },500);
+  }
+
+  showNextTip();
+  setInterval(showNextTip, 4000);
+
+  // Particles
+  for(let i=0;i<50;i++){
+    const particle=document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left=Math.random()*100+'vw';
+    particle.style.animationDuration=5+Math.random()*10+'s';
+    particle.style.width=2+Math.random()*3+'px';
+    particle.style.height=2+Math.random()*3+'px';
+    document.body.appendChild(particle);
+  }
+});
+</script>
+</head>
+<body class="flex flex-col items-center justify-between min-h-screen p-6 relative overflow-hidden">
+
+  <!-- Logo and Title -->
+  <div class="flex flex-col items-center mt-8 fade-in fade-delay-1">
+    <img src="https://i.ibb.co/nNLrybTf/ascensionlogo.png" alt="Ascension Networks Logo" class="w-32 h-32 mb-4 border-4 border-white rounded-full shadow-xl logo-neon" />
+    <h1 class="title-text text-5xl sm:text-6xl neon-text-white neon-pulse">Ascension Networks</h1>
+    <p class="text-sm tracking-widest uppercase mt-1 neon-text-white">1942 Roleplay</p>
+  </div>
+
+  <!-- Root Header -->
+  <div class="mt-10 fade-in fade-delay-2">
+    <h2 class="title-text text-4xl sm:text-5xl neon-text-red">Root: Insidious</h2>
+  </div>
+
+  <!-- Info Boxes -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 fade-in fade-delay-3 w-full max-w-4xl">
+    <div class="info-box"><p>Map Developer: <span class="font-semibold">ThomasTwoFace</span></p></div>
+    <div class="info-box"><p>Developer: <span class="font-semibold">Ibby</span></p><p class="mt-2">Gamemode: <span class="font-semibold">1942RP</span></p></div>
+    <div class="info-box"><p>Developed by <span class="font-semibold">Ascension Networks</span></p></div>
+  </div>
+
+  <!-- Game Tips -->
+  <div class="mt-8 w-full max-w-2xl fade-in fade-delay-4">
+    <p class="game-tips-ticker"></p>
+  </div>
+
+  <!-- Loading Bar -->
+  <div class="mt-10 fade-in fade-delay-4 w-full max-w-md">
+    <div class="flex justify-between items-center mb-2">
+      <span class="text-sm text-gray-400">Loading game resources...</span>
+      <span id="loadingPercent" class="text-sm text-white font-medium">0%</span>
     </div>
-
-    <!-- Rulebook Section -->
-    <div class="bg-neutral-900 p-6 rounded-xl border border-gray-700 mt-10 max-w-xl w-full text-center shadow-lg rulebook-glow">
-      <h3 class="title-text text-xl mb-3 neon-text"> Discord Server</h3>
-      <p class="text-gray-400 mb-4">
-        Please read the rules before joining. Respect the server and other players.
-      </p>
-      <a
-        href="https://discord.gg/vfwSmSWKWD"
-        target="_blank"
-        class="rule-button"
-      >
-        Join Discord!
-      </a>
-
-      <!-- Loading Bar -->
-      <div class="mt-6">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-sm text-gray-400">Loading game resources...</span>
-          <span id="loadingPercent" class="text-sm text-white font-medium">0%</span>
-        </div>
-        <div class="loading-container">
-          <div id="loadingBar" class="loading-bar"></div>
-        </div>
-      </div>
+    <div class="loading-container">
+      <div id="loadingBar" class="loading-bar"></div>
     </div>
+  </div>
 
-    <!-- Footer Info -->
-    <footer class="mt-10 text-center text-gray-500 text-sm">
-      <p class="mt-1">© 2025 Ares Networks — Have a great day!</p>
-    </footer>
-  </body>
+  <!-- Footer -->
+  <footer class="mt-10 text-center text-gray-500 text-sm fade-in fade-delay-4">
+    <p class="mt-1">© 2025 Ascension Networks — Enjoy your experience!</p>
+  </footer>
+
+</body>
 </html>
-
-
